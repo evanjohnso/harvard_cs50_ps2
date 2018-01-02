@@ -25,11 +25,15 @@ int main(int argc, string argv[])
 
 void encrypt(string s, string word)
 {
+    // keep track of where in the encryption word we are
     int word_len = strlen(word) - 1;
     int key_counter = 0;
+
     for (int i = 0; i < strlen(s); i++)
     {
+    // for each iteration, grab the int value to be shifted
     int key = toupper(word[key_counter]) - 65;
+    // force upper (or lower) in case word is mixed case
         if (isalpha(s[i]))
         {
             if(isupper(s[i]))
@@ -40,13 +44,13 @@ void encrypt(string s, string word)
             {
                 shift_char(s[i], key, 97);
             }
+            // if looped through word, reset for next round, else continue ++
             if (key_counter == word_len)
             {
                 key_counter = 0;
             }
             else
             {
-              // printf("int in keyword: %d\n",key);
                 key_counter ++;
             }
         }
@@ -72,6 +76,7 @@ void shift_char(char c, int key, int ascii)
 
 bool valid_cmd_args(int argc, string argv[])
 {
+    // if not exactly 2 arguments, throw error
     if (argc < 2 || argc > 2)
     {
         printf("Invalid command line arguments.\nPlease enter an encryption string as only argument.\n");
@@ -79,6 +84,7 @@ bool valid_cmd_args(int argc, string argv[])
     }
     for (int i = 0, n = strlen(argv[1]); i < n; i++)
     {
+        // if any non-alpha characters in second arg, throw error
         if (!isalpha(argv[1][i]))
         {
             printf("Please enter a valid encryption key\n");
