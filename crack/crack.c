@@ -17,12 +17,13 @@ int main(int argc, string argv[]){
     crack(argv[1]);
 }
 
-void crack(string s)
+void crack(string hash)
 {
-    if (strlen(s) < 2)
+    if (strlen(hash) < 2)
     {
         printf("Invalid hash\n");
     }
-    char salt[3] = { s[0], s[1], '\0'};
+    char salt[3] = { hash[0], hash[1], '\0'};
+    crypt("rofl", salt);
     printf("%s", salt);
 }
