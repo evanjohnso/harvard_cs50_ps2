@@ -29,7 +29,6 @@ void parse_string(string s)
         {
           print_uppr_char(s[i]);
         }
-
     }
     printf("\n");
 }
